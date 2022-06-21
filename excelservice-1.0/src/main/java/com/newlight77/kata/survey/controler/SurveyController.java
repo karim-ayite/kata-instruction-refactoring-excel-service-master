@@ -8,11 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Deprecated
+/***
+ * @deprecated Use CampaignController and SurveyControllerV2
+ */
 public class SurveyController {
 
     private ExportCampaignService exportCampaignService;
     private static final Logger logger = LoggerFactory.getLogger(SurveyController.class);
-    
+
     public SurveyController(final ExportCampaignService exportCampaignService) {
       this.exportCampaignService = exportCampaignService;
     }
@@ -43,7 +47,7 @@ public class SurveyController {
         Campaign campaign = exportCampaignService.getCampaign(campaignId);
         Survey survey = exportCampaignService.getSurvey(campaign.getSurveyId());
         exportCampaignService.sendResults(campaign, survey);
-        
+
     }
 }
 
