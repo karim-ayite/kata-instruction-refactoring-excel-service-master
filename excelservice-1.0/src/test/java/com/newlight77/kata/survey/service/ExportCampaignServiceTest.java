@@ -39,7 +39,7 @@ public class ExportCampaignServiceTest {
     }
 
     @Test
-    public void test() {
+    public void shouldCallWriteFileAndSendWithValidWorkBook() {
 
         // Arrange
         String surveyJson = "{\n" +
