@@ -1,6 +1,6 @@
 # kata-legacy-code
 
-Given the codebase under excelservice-1.0, you need to improve the existing code, which can be considered as legacy code.
+Given the codebase under excelservice, you need to improve the existing code, which can be considered as legacy code.
 
 
 The code is supposed to :

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v2/api")
+/***
+ * Should be in it own artifact !!!!!!!!!! Only exportCampaign method should be here
+ */
 public class CampaignControllerV2 {
 
     private final ExportCampaignService exportCampaignService;

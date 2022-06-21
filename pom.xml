@@ -9,6 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>excelservice-1.0</module>
+        <module>excelservice</module>
    </modules>
 </project>
