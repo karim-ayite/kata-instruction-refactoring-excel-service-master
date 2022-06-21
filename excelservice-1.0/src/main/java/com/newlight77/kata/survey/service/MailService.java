@@ -11,11 +11,12 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.Objects;
 
 @Service
 public class MailService {
-  private JavaMailSender mailSender;
-  private MailServiceConfig mailServiceConfig;
+  private final JavaMailSender mailSender;
+  private final MailServiceConfig mailServiceConfig;
   private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
   public MailService(final JavaMailSender mailSender, final MailServiceConfig mailServiceConfig) {
@@ -32,8 +33,9 @@ public class MailService {
       messageHelper.setText("Hi,\n\nYou will find in the attached file the campaign results.");
 
       FileSystemResource file = new FileSystemResource(attachment);
-      messageHelper.addAttachment(file.getFilename(), file);
+      messageHelper.addAttachment(Objects.requireNonNull(file.getFilename()), file);
     };
+
     try {
       mailSender.send(messagePreparator);
       logger.info("Email sent successfully");

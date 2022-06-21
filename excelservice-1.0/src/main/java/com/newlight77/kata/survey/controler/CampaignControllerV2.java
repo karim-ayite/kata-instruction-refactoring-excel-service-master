@@ -2,7 +2,9 @@ package com.newlight77.kata.survey.controler;
 
 import com.newlight77.kata.survey.model.Campaign;
 import com.newlight77.kata.survey.model.Survey;
+import com.newlight77.kata.survey.service.CampaignService;
 import com.newlight77.kata.survey.service.ExportCampaignService;
+import com.newlight77.kata.survey.service.SurveyService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,24 +13,30 @@ public class CampaignControllerV2 {
 
     private final ExportCampaignService exportCampaignService;
 
-    public CampaignControllerV2(final ExportCampaignService exportCampaignService) {
+    private final SurveyService surveyService;
+
+    private final CampaignService campaignService;
+
+    public CampaignControllerV2(final ExportCampaignService exportCampaignService, SurveyService surveyService, CampaignService campaignService) {
         this.exportCampaignService = exportCampaignService;
+        this.surveyService = surveyService;
+        this.campaignService = campaignService;
     }
 
     @PostMapping("/campaign")
     public void createCampaign(@RequestBody Campaign campaign) {
-        exportCampaignService.createCampaign(campaign);
+        campaignService.createCampaign(campaign);
     }
 
     @GetMapping("/campaign/{id}")
     public Campaign getCampaign(@PathVariable String id) {
-        return exportCampaignService.getCampaign(id);
+        return campaignService.getCampaign(id);
     }
 
     @PostMapping(value = "/campaign/export")
     public void exportCampaign(@RequestBody String campaignId) {
-        Campaign campaign = exportCampaignService.getCampaign(campaignId);
-        Survey survey = exportCampaignService.getSurvey(campaign.getSurveyId());
+        Campaign campaign = campaignService.getCampaign(campaignId);
+        Survey survey = surveyService.getSurvey(campaign.getSurveyId());
         exportCampaignService.sendResults(campaign, survey);
     }
 }

@@ -17,30 +17,16 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class ExportCampaignService {
 
-  private CampaignClient campaignWebService;
-  private MailService mailService;
+
+  private final MailService mailService;
   private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   
-  public ExportCampaignService(final CampaignClient campaignWebService, MailService mailService) {
-    this.campaignWebService = campaignWebService;
+  public ExportCampaignService(MailService mailService) {
     this.mailService = mailService;
   }
 
-  public void creerSurvey(Survey survey) {
-    campaignWebService.createSurvey(survey);
-  }
 
-  public Survey getSurvey(String id) {
-    return campaignWebService.getSurvey(id);
-  }
 
-  public void createCampaign(Campaign campaign) {
-    campaignWebService.createCampaign(campaign);
-  }
-
-  public Campaign getCampaign(String id) {
-    return campaignWebService.getCampaign(id);
-  }
 
   public void sendResults(Campaign campaign, Survey survey) {
     Workbook workbook = new XSSFWorkbook();

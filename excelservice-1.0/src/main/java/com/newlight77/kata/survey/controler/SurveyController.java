@@ -2,50 +2,55 @@ package com.newlight77.kata.survey.controler;
 
 import com.newlight77.kata.survey.model.Campaign;
 import com.newlight77.kata.survey.model.Survey;
+import com.newlight77.kata.survey.service.CampaignService;
 import com.newlight77.kata.survey.service.ExportCampaignService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.newlight77.kata.survey.service.SurveyService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Deprecated
-/***
+/**
  * @deprecated Use CampaignController and SurveyControllerV2
  */
+@Deprecated
 public class SurveyController {
 
-    private ExportCampaignService exportCampaignService;
-    private static final Logger logger = LoggerFactory.getLogger(SurveyController.class);
+    private final SurveyService surveyService;
 
-    public SurveyController(final ExportCampaignService exportCampaignService) {
-      this.exportCampaignService = exportCampaignService;
+    private final CampaignService campaignService;
+
+    private final ExportCampaignService exportCampaignService;
+
+    public SurveyController(SurveyService surveyService, CampaignService campaignService, final ExportCampaignService exportCampaignService) {
+        this.surveyService = surveyService;
+        this.campaignService = campaignService;
+        this.exportCampaignService = exportCampaignService;
     }
 
     @RequestMapping(value = "/api/survey/create", method = RequestMethod.POST)
     public void createSurvey(@RequestBody Survey survey) {
-        exportCampaignService.creerSurvey(survey);
+        surveyService.creerSurvey(survey);
     }
 
     @RequestMapping(value = "/api/survey/get", method = RequestMethod.GET)
     public Survey getSurvey(@RequestParam String id) {
-        return exportCampaignService.getSurvey(id);
+        return surveyService.getSurvey(id);
     }
 
     @RequestMapping(value = "/api/survey/campaign/create", method = RequestMethod.POST)
     public void createCampaign(@RequestBody Campaign campaign) {
-        exportCampaignService.createCampaign(campaign);
+        campaignService.createCampaign(campaign);
     }
 
     @RequestMapping(value = "/api/survey/campaign/get", method = RequestMethod.GET)
     public Campaign getCampaign(@RequestParam String id) {
-        return exportCampaignService.getCampaign(id);
+        return campaignService.getCampaign(id);
     }
 
     @RequestMapping(value = "/api/survey/campaign/export", method = RequestMethod.POST)
     public void exportCampaign(@RequestParam String campaignId) {
 
-        Campaign campaign = exportCampaignService.getCampaign(campaignId);
-        Survey survey = exportCampaignService.getSurvey(campaign.getSurveyId());
+        Campaign campaign = campaignService.getCampaign(campaignId);
+        Survey survey = surveyService.getSurvey(campaign.getSurveyId());
         exportCampaignService.sendResults(campaign, survey);
 
     }

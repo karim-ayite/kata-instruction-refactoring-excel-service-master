@@ -16,6 +16,7 @@ import java.io.File;
 
 public class ExportCampaignServiceTest {
 
+
     private ExportCampaignService service;
 
     @Mock
@@ -30,11 +31,20 @@ public class ExportCampaignServiceTest {
     @Captor
     private ArgumentCaptor<Workbook> workBookCaptor;
 
+    @Mock
+    private SurveyService surveyService;
+
+    @Mock
+    private CampaignService campaignService;
+
+    public ExportCampaignServiceTest() {
+    }
+
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
 
-        service = new ExportCampaignService(campaignClientMock, mailServiceMock);
+        service = new ExportCampaignService(mailServiceMock);
         service = Mockito.spy(service);
     }
 
