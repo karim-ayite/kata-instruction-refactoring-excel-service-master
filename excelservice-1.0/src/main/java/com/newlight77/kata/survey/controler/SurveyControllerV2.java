@@ -21,7 +21,7 @@ public class SurveyControllerV2 {
     }
 
 
-    @GetMapping("/campaign/{id}")
+    @GetMapping("/survey/{id}")
     public Survey getSurvey(@PathVariable String id) {
         return exportCampaignService.getSurvey(id);
     }

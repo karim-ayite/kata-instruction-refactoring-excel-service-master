@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v2/api")
-public class CampaignController {
+public class CampaignControllerV2 {
 
     private final ExportCampaignService exportCampaignService;
 
-    public CampaignController(final ExportCampaignService exportCampaignService) {
+    public CampaignControllerV2(final ExportCampaignService exportCampaignService) {
         this.exportCampaignService = exportCampaignService;
     }
 
