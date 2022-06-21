@@ -1,6 +1,7 @@
 package com.newlight77.kata.survey.service;
 
 import com.newlight77.kata.survey.config.MailServiceConfig;
+import com.newlight77.kata.survey.exception.ExcelServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -40,7 +41,7 @@ public class MailService {
       mailSender.send(messagePreparator);
       logger.info("Email sent successfully");
     } catch (MailException e) {
-      throw new RuntimeException("An error occurred while sending an email", e);
+      throw new ExcelServiceException("An error occurred while sending an email", e);
     }
   }
 
