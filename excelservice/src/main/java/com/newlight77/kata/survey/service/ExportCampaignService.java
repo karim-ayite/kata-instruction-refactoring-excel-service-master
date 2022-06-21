@@ -1,11 +1,9 @@
 package com.newlight77.kata.survey.service;
 
 import com.newlight77.kata.survey.exception.ExcelServiceException;
-import com.newlight77.kata.survey.model.AddressStatus;
 import com.newlight77.kata.survey.model.Campaign;
 import com.newlight77.kata.survey.model.Survey;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

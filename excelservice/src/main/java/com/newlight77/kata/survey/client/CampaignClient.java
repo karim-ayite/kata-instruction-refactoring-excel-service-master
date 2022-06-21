@@ -10,13 +10,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class CampaignClient {
 
-    private WebClient webClient;
+    private final WebClient webClient;
 
     public CampaignClient(@Value("${external.url}") String externalUrl) {
         webClient = WebClient.builder()
                 .baseUrl(externalUrl)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                .build();;
+                .build();
     }
 
     public void createSurvey(Survey survey) {
