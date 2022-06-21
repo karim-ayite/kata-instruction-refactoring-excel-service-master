@@ -9,7 +9,4 @@ public enum Status {
         return name();
     }
 
-    public static Status fromValue(String v) {
-        return valueOf(v);
-    }
 }

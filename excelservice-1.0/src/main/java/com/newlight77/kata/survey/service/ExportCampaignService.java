@@ -1,5 +1,6 @@
 package com.newlight77.kata.survey.service;
 
+import com.newlight77.kata.survey.exception.ExcelServiceException;
 import com.newlight77.kata.survey.model.AddressStatus;
 import com.newlight77.kata.survey.model.Campaign;
 import com.newlight77.kata.survey.model.Survey;
@@ -24,8 +25,6 @@ public class ExportCampaignService {
   public ExportCampaignService(MailService mailService) {
     this.mailService = mailService;
   }
-
-
 
 
   public void sendResults(Campaign campaign, Survey survey) {
@@ -157,7 +156,7 @@ public class ExportCampaignService {
       mailService.send(resultFile);
       resultFile.deleteOnExit();
     } catch(Exception ex) {
-        throw new RuntimeException("Errorr while trying to send email", ex);
+        throw new ExcelServiceException("Errorr while trying to send email", ex);
     } finally {
       try {
         workbook.close();
