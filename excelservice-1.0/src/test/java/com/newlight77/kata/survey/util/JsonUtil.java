@@ -36,15 +36,6 @@ public class JsonUtil {
         return objectMapper;
     }
 
-    public String toJson(final Object o) {
-        try {
-            return mapper.writeValueAsString(o);
-        } catch (IOException ioe) {
-            String msg = "Error convert to json from object " + o.toString();
-            throw new IllegalStateException(msg, ioe);
-        }
-    }
-
     public <T> T fromJson(final String input, final Class<T> resourceClass) {
         try {
             return mapper.readValue(input, resourceClass);
@@ -54,13 +45,4 @@ public class JsonUtil {
         }
     }
 
-    public <T> T fromJsonFile(final String path, final Class<T> resourceClass) {
-        try {
-            InputStream is = JsonUtil.class.getResourceAsStream(path);
-            return mapper.readValue(is, resourceClass);
-        } catch (IOException ioe) {
-            String msg = "Error converting from json file " + path + " " + "to object " + resourceClass.getName();
-            throw new IllegalStateException(msg, ioe);
-        }
-    }
 }
