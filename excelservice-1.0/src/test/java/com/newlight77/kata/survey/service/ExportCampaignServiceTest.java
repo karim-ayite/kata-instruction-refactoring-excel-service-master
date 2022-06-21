@@ -54,7 +54,7 @@ public class ExportCampaignServiceTest {
         // Arrange
         String surveyJson = "{\n" +
                 "    \"id\" : \"surveyId\",\n" +
-                "    \"sommary\" : \"sommary\",\n" +
+                "    \"summary\" : \"sommary\",\n" +
                 "    \"client\" : \"client's name\",\n" +
                 "    \"clientAddress\" : {\n" +
                 "        \"id\" : \"addressId1\",\n" +
