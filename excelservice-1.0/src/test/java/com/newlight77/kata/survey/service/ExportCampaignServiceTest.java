@@ -65,11 +65,11 @@ public class ExportCampaignServiceTest {
                 "    },\n" +
                 "    \"questions\" : [{\n" +
                 "        \"id\" : \"questionId1\",\n" +
-                "        \"question\" : \"question1\"\n" +
+                "        \"label\" : \"question1\"\n" +
                 "    }, \n" +
                 "    {\n" +
                 "       \"id\" : \"questionId2\",\n" +
-                "       \"question\" : \"question2\"\n" +
+                "       \"label\" : \"question2\"\n" +
                 "   }] \n" +
                 "}";
 
